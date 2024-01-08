@@ -1,0 +1,91 @@
+//importing variables,mixins and globalstyle
+@import "variable";
+@import "mixin";
+@import "globalstyle";
+//style for container 1
+.container1{
+    display: flex;
+    color: $Purple;
+    margin: 10px;
+    //nested style
+    nav{
+        //margin for navigation bar
+        margin: 20px 20px 0 0;
+        ul{
+            list-style-type: none;
+            
+            li{
+                //style for first and third list item
+                &:nth-child(1),&:nth-child(3){
+                    //mixin @include with parameter
+                    @include listinnav($Orange);
+                    
+                }
+                //style for second and fourth list item
+                &:nth-child(2),&:nth-child(4){
+                    //mixin @include with parameter
+                    @include listinnav($Blue);
+                }
+                a{
+                    color: $Purple;
+                    sub{
+                        font-size: 110%;
+                    }
+                }
+            }
+        }
+
+    }
+    h1{ 
+        font-family: sans-serif;
+        padding: 5px 0 0 10px;
+    }
+    p{
+        padding-top: 22px;
+        font-family: serif;
+        //extend
+        @extend h1;
+    }
+}
+//style for container 2
+.container2{
+    margin: 0 10px 0 215px;
+    color: $Purple;
+    //style for horizontal rule
+    hr{
+        border: 0;
+        border-bottom: 2px dotted $Purple;
+    }
+    
+        
+    div{
+        margin-right: 220px;
+        p{
+            //style for first paragraph
+        &:nth-child(1){
+            //mixin @include with multiple parameter
+            @include paraindiv(dashed,#000,left);
+            //transition for smooth animation
+            transition: transform 0.3s ease-in-out;
+
+            //animation on hover
+            &:hover{
+                //bounce effect
+                transform: scale(1.1);
+            }
+        }
+        //style for second paragraph
+        &:nth-child(2){
+            @include paraindiv(dashed,$Orange,right);
+        }
+        //style for third paragraph
+        &:nth-child(3){
+            @include paraindiv(dotted,$Blue,center);
+        }
+        }
+    }
+    
+    p{
+        padding-top: 30px;
+    }
+}
